@@ -1,22 +1,22 @@
 #ifndef __ACTION__
 #define __ACTION__
 
+class DFSM;
+
 class Action
 {
 public:
-    Lexer* m_lexer;
+    DFSM* m_dfsm;
 
-    Action(Lexer* lexer = nullptr) : m_lexer(lexer) {}
+    Action(DFSM* dfsm = nullptr) : m_dfsm(dfsm) {}
 
-    virtual int apply();
+    virtual void apply() {}
 };
 
-class FreeBuffer : public Action
+class NoAction : public Action
 {
 public:
-    FreeBuffer(Lexer* lexer = nullptr) : Action(lexer) {}
-
-    virtual int apply();
+    virtual void apply() {}
 };
 
 #endif

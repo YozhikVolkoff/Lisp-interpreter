@@ -2,6 +2,7 @@
 #define __TRANSITION__
 
 #include "action.h"
+#include "state.h"
 
 class Transition
 {
@@ -9,8 +10,9 @@ public:
     Action m_action;
     State m_target_state;
 
-    Transition() : m_target_state(State::LAST_ONE) {}
-    Transition(Action action, State t_state) : m_action(action), m_target_state(t_state) {}
+    Transition(Action action = Action(), State t_state = State::TERM) 
+        : m_action(action), 
+        m_target_state(t_state) {}
 };
 
 #endif

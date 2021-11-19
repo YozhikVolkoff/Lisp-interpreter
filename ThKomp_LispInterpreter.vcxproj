@@ -140,13 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="action.h" />
-    <ClInclude Include="lexer.h" />
+    <ClInclude Include="dfsm.h" />
+    <ClInclude Include="event.h" />
+    <ClInclude Include="state.h" />
     <ClInclude Include="token.h" />
     <ClInclude Include="transition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action.cpp" />
-    <ClCompile Include="lexer.cpp" />
+    <ClCompile Include="dfsm.cpp" />
     <ClCompile Include="transition.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

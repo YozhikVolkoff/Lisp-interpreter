@@ -18,7 +18,7 @@
     <ClInclude Include="token.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="lexer.h">
+    <ClInclude Include="dfsm.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="transition.h">
@@ -27,9 +27,15 @@
     <ClInclude Include="action.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="state.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lexer.cpp">
+    <ClCompile Include="dfsm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="transition.cpp">
