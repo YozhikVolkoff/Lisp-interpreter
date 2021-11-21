@@ -18,6 +18,12 @@ enum class State
     // for identifier parsing
     IDENT,
 
+    PLUS,
+    MINUS,
+    GR,
+    LESS,
+    SLASH,
+
     TERM
 };
 

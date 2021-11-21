@@ -1,8 +1,2 @@
-﻿  action.cpp
-  dfsm.cpp
-  transition.cpp
-  Создание кода...
-dfsm.obj : error LNK2001: неразрешенный внешний символ "public: virtual void __thiscall Preproc::set_event(void)" (?set_event@Preproc@@UAEXXZ).
-dfsm.obj : error LNK2001: неразрешенный внешний символ "public: virtual void __thiscall Parser::set_event(void)" (?set_event@Parser@@UAEXXZ).
-MSVCRTD.lib(exe_main.obj) : error LNK2019: ссылка на неразрешенный внешний символ _main в функции "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ).
-C:\p_folder\Projects\ThKomp_LispInterpreter\Debug\ThKomp_LispInterpreter.exe : fatal error LNK1120: неразрешенных внешних элементов: 3
+﻿  main.cpp
+  ThKomp_LispInterpreter.vcxproj -> C:\p_folder\Projects\ThKomp_LispInterpreter\Debug\ThKomp_LispInterpreter.exe

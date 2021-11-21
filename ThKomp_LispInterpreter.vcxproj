@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="dfsm.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="transition.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
