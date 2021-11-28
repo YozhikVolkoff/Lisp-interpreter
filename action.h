@@ -1,4 +1,4 @@
-/*#ifndef __ACTION__
+#ifndef __ACTION__
 #define __ACTION__
 
 #include "dfsm.h"
@@ -8,60 +8,94 @@ class DFSM;
 class Action
 {
 public:
-    DFSM* m_dfsm;
+    Action() {}
 
-    Action(DFSM* dfsm = nullptr) : m_dfsm(dfsm) {}
+    virtual ~Action() {}
 
     virtual void apply() {}
 };
 
-class GoNext : public Action
+class NoAction : public Action
 {
 public:
-    GoNext(DFSM* dfsm) : Action(dfsm) {}
+    NoAction() : Action() {}
 
-    virtual void apply() {
-        m_dfsm->m_curr_char ++;
-        m_dfsm->m_curr_event = m_dfsm->m_event_table[*m_dfsm->m_curr_char];
-    }
+    virtual void apply() {}
 };
 
-class Wr_GoNext : public Action
+class LexAction : public Action
 {
 public:
-    Wr_GoNext(DFSM* dfsm) : Action(dfsm) {}
+    Lexer* m_lexer;
 
-    virtual void apply() {
-        m_dfsm->m_buffer.append(1, *m_dfsm->m_curr_char);
-        m_dfsm->m_curr_char ++;
-        m_dfsm->m_curr_event = m_dfsm->m_event_table[*m_dfsm->m_curr_char];
-    }
+    LexAction(Lexer* lexer) : m_lexer(lexer) {}
+
+    virtual ~LexAction() {}
+
+    virtual void apply() {}
 };
 
-class GetTok : public Action
+class GoNext : public LexAction
 {
 public:
-    GetTok(DFSM* dfsm) : Action(dfsm) {}
+    GoNext(Lexer* lexer) : LexAction(lexer) {}
 
-    virtual void apply() {
-        m_dfsm->m_out.push_back(Token(m_dfsm->m_buffer));
-        m_dfsm->m_buffer.clear();
-    }
+    virtual void apply();
 };
 
-class Wr_GetTok_GoNext : public Action
+class Push_GoNext : public LexAction
 {
 public:
-    Wr_GetTok_GoNext(DFSM* dfsm) : Action(dfsm) {}
+    Push_GoNext(Lexer* lexer) : LexAction(lexer) {}
 
-    virtual void apply() {
-        m_dfsm->m_buffer.append(1, *m_dfsm->m_curr_char);
-        m_dfsm->m_out.push_back(Token(m_dfsm->m_buffer));
-        m_dfsm->m_buffer.clear();
-        m_dfsm->m_curr_char++;
-        m_dfsm->m_curr_event = m_dfsm->m_event_table[*m_dfsm->m_curr_char];
-    }
+    virtual void apply();
+};
+
+class Pop_GoNext : public LexAction
+{
+public:
+    Pop_GoNext(Lexer* lexer) : LexAction(lexer) {}
+
+    virtual void apply();
+};
+
+class GetTok : public LexAction
+{
+public:
+    NameType m_name_type;
+
+    GetTok(Lexer* lexer, NameType name_type = NameType::NOT_DEFINED) 
+        : LexAction(lexer),
+        m_name_type(name_type) {}
+
+    virtual void apply();
+};
+
+class Push_GetTok_GoNext : public GetTok
+{
+public:
+    Push_GetTok_GoNext(Lexer* lexer, NameType name_type = NameType::NOT_DEFINED) 
+        : GetTok(lexer, name_type) {}
+
+    virtual void apply();
+};
+
+class GetLeftPar : public Push_GetTok_GoNext
+{
+public:
+    GetLeftPar(Lexer* lexer, NameType name_type = NameType::NOT_DEFINED)
+        : Push_GetTok_GoNext(lexer, name_type) {}
+
+    virtual void apply();
+};
+
+class GetRightPar : public Push_GetTok_GoNext
+{
+public:
+    GetRightPar(Lexer* lexer, NameType name_type = NameType::NOT_DEFINED)
+        : Push_GetTok_GoNext(lexer, name_type) {}
+
+    virtual void apply();
 };
 
 #endif
-*/

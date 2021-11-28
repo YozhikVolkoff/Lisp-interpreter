@@ -1,23 +1,19 @@
 #ifndef __TRANSITION__
 #define __TRANSITION__
 
-#include "dfsm.h"
+#include "action.h"
 
 class Transition
 {
 public:
-    DFSM* m_dfsm;
+    Action* m_action;
     State m_target_state;
 
-    Transition(DFSM* dfsm = nullptr, State t_state = State::TERM) 
-        : m_dfsm(dfsm), 
+    Transition(Action* action = nullptr, State t_state = State::TERM) 
+        : m_action(action), 
         m_target_state(t_state) {}
-
-    virtual void apply() {
-        m_dfsm->m_curr_state = m_target_state;
-    }
 };
-
+/*
 class Transit_GoNext : public Transition
 {
 public:
@@ -68,6 +64,6 @@ public:
         m_dfsm->m_curr_event = m_dfsm->m_event_table[*m_dfsm->m_curr_char];
         Transition::apply();
     }
-};
+};*/
 
 #endif

@@ -24,6 +24,12 @@ enum class State
     LESS,
     SLASH,
 
+    // for comments
+    SHARP,
+    VERT_BAR,
+    LINE_COMM,
+    BLOCK_COMM,
+
     TERM
 };
 

@@ -28,10 +28,16 @@ enum class Event
     LESS,
 
     // special
+    LEFT_PAR,
+    RIGHT_PAR,
     D_QUOT,
     DOT,
     B_SLASH,
     UN_SC,
+    SHARP,
+    EXCL,
+    VERT_BAR,
+    ENDLINE,
     END,
 
     NO_EVENT
@@ -42,6 +48,8 @@ const std::vector<Event> v_event{Event::SYM, Event::LETTER, Event::SEP_SYM,
                                  Event::MINUS, Event::SLASH, Event::STAR,
                                  Event::EQ, Event::GR, Event::LESS,
                                  Event::D_QUOT, Event::DOT, Event::B_SLASH, 
-                                 Event::UN_SC, Event::END};
+                                 Event::UN_SC, Event::SHARP, Event::EXCL, 
+                                 Event::ENDLINE, Event::VERT_BAR, 
+                                 Event::LEFT_PAR, Event::RIGHT_PAR, Event::END};
 
 #endif

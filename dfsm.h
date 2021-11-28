@@ -5,7 +5,8 @@
 
 #include<vector>
 #include <map>
-#include "token.h"
+#include <cassert>
+#include "name.h"
 #include "event.h"
 #include "state.h"
 
@@ -16,31 +17,33 @@ class DFSM
 public:
     State m_curr_state;
     Event m_curr_event;
+    Transition* m_curr_transit;
     std::map<State, std::map<Event, Transition*> > m_transit_table;
-    std::map<char, Event> m_event_table;
-    std::string m_in;
-    std::string::iterator m_curr_char;
-    std::string m_buffer;
-    std::vector<Token> m_out;
-
 
     DFSM();
-    
-    void set_input(std::string input);
 
     void do_transition();
 };
 
-class Preproc : public DFSM
+class Lexer : public DFSM
 {
 public:
-    Preproc();
-};
+    std::map<char, Event> m_event_table;
+    std::string m_in;
+    std::string::iterator m_curr_char;
+    std::string m_buffer;
+    int m_parenth_count;
+    std::vector<Name> m_out;
+    std::vector<Name*> m_kword_table;
+    const int kwords_num = 128;
+    std::vector<Name*> m_name_table;
+    const int names_num = 512;
 
-class Parser : public DFSM
-{
-public:
-    Parser();
+    Lexer();
+
+    void set_input(std::string input);
+
+    int find_name(std::string str, const std::string& table_name, const int& ins);
 };
 
 #endif

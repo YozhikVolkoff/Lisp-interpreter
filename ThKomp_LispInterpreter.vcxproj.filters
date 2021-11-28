@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="token.h">
+    <ClInclude Include="name.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="dfsm.h">
