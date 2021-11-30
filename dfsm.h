@@ -6,9 +6,9 @@
 #include<vector>
 #include <map>
 #include <cassert>
-#include "name.h"
 #include "event.h"
 #include "state.h"
+#include "parsing_tree.h"
 
 class Transition;
 
@@ -34,16 +34,25 @@ public:
     std::string m_buffer;
     int m_parenth_count;
     std::vector<Name> m_out;
-    std::vector<Name*> m_kword_table;
-    const int kwords_num = 128;
-    std::vector<Name*> m_name_table;
-    const int names_num = 512;
 
     Lexer();
 
     void set_input(std::string input);
+};
 
-    int find_name(std::string str, const std::string& table_name, const int& ins);
+class Parser : public DFSM
+{
+public:
+    Node* m_root;
+    Node* m_curr_node;
+    std::vector<Name>::iterator m_curr_name;
+    std::vector<Name> m_in;
+
+    Parser();
+
+    void set_input(std::vector<Name> input);
+
+    Event to_event(const Name& name);
 };
 
 #endif

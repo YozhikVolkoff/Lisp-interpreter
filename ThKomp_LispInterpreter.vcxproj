@@ -141,15 +141,21 @@
   <ItemGroup>
     <ClInclude Include="action.h" />
     <ClInclude Include="dfsm.h" />
+    <ClInclude Include="error.h" />
     <ClInclude Include="event.h" />
+    <ClInclude Include="parsing_tree.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="name.h" />
+    <ClInclude Include="table.h" />
     <ClInclude Include="transition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="dfsm.cpp" />
+    <ClCompile Include="error.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="parsing_tree.cpp" />
+    <ClCompile Include="table.cpp" />
     <ClCompile Include="transition.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

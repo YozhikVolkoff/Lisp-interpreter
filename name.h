@@ -1,11 +1,21 @@
-#ifndef __TOKEN__
-#define __TOKEN
+#ifndef __NAME__
+#define __NAME__
 
 #include <string>
 
+#define INIT_NAME " "
+#define TERM_NAME "   "
+
 enum class NameType {
+    INIT,
+    TERM,
     IDENT,
-    NOT_DEFINED
+    NUM,
+    STR,
+    OP,
+    LEFT_PAR,
+    RIGHT_PAR,
+    UNDEF
 };
 
 class Name
@@ -17,7 +27,7 @@ public:
     int m_level;
     Name* m_next;
 
-    Name(std::string str = "name", NameType type = NameType::NOT_DEFINED, int level = 0)
+    Name(std::string str = "", NameType type = NameType::UNDEF, int level = 0)
         : m_str(str),
         m_value(0),
         m_type(type),
