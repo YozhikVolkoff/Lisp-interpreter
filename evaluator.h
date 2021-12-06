@@ -2,21 +2,20 @@
 #define __EVALUATOR__
 
 #include <list>
+#include <iostream>
 #include "parsing_tree.h"
-#include "evaluator.h"
 
-using std::Node;
-using std::Name;
-using std::NameType;
+using std::string;
+using std::list;
 
-class Evaluator()
+class Evaluator
 {
 public:
     Node* m_curr_node;
 
     Evaluator(Node* curr): m_curr_node(curr) {}
     
-    void eval(Node* сurr);
-}
+    Node* eval(Node* сurr);
+};
 
 #endif
