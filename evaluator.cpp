@@ -1,4 +1,4 @@
-
+#include "evaluator.h"
 
 
 void Evaluator::eval(Node* curr)
