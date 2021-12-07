@@ -22,6 +22,8 @@ Node* Evaluator::eval(Node* curr)
     
     // Do operation
     if(curr->m_name->m_str == "+") {
+
+	// Sum requires down to zero arguements
         bool flag = 0;
         for (auto i = m_result.begin(); i != m_result.end(); ++i) {
             if((*i)->m_name->m_type != NameType::NUM) flag = true;
@@ -31,33 +33,51 @@ Node* Evaluator::eval(Node* curr)
             return nullptr;
         }
            
-        // If all results are NUM, it's possible to sum them
         Name* t_name = new Name();
         t_name->m_value = 0.0;
         t_name->m_type = NameType::NUM;
         Node* t = new Node(t_name);
         
         for (auto i = m_result.begin(); i != m_result.end(); ++i) {
-            t->m_name->m_value += atoi((*i)->m_name->m_str.c_str());
+            t->m_name->m_value += atof((*i)->m_name->m_str.c_str());
         }
         t->m_name->m_str = std::to_string(t->m_name->m_value);
         return t;
     }
     
     else if(curr->m_name->m_str == "-") {
-        bool flag = 0;
+
+	// Minus requires at least one arguement
+	bool flag = 0;
+        if (m_result.size() < 1) {
+            flag = true;
+            m_result.clear();
+            return nullptr;
+        }
+
+        // Check for all NUMs
+        Node* first = m_result.front();
+        m_result.pop_front();
+        if (first->m_name->m_type != NameType::NUM) flag = true;
+
         for (auto i = m_result.begin(); i != m_result.end(); ++i) {
-            if((*i)->m_name->m_type != NameType::NUM) flag = true;
+            if ((*i)->m_name->m_type != NameType::NUM) flag = true;
         }
         if (flag) {
             m_result.clear();
             return nullptr;
         }
 
-        // If all results are NUM, it's possible to sum them
         Name* t_name = new Name();
-        t_name->m_value = 0.0;
-        t_name->m_type = NameType::NUM;
+
+	// If one argiement, is't just changing sign
+	if (m_result.size() == 0) {
+	    t_name->m_value = -1 * (atof(first->m_name->m_str.c_str()));
+	}
+	else {
+	    t_name->m_value = atof(first->m_name->m_str.c_str());
+        }
+	t_name->m_type = NameType::NUM;
         Node* t = new Node(t_name);
 
         for (auto i = m_result.begin(); i != m_result.end(); ++i) {
@@ -67,8 +87,9 @@ Node* Evaluator::eval(Node* curr)
 
         return t;
     }
-
     else if(curr->m_name->m_str == "*") {
+
+	// Muttiplation requires down to zero arguements
         bool flag = 0;
         for (auto i = m_result.begin(); i != m_result.end(); ++i) {
             if((*i)->m_name->m_type != NameType::NUM) flag = true;
@@ -78,7 +99,6 @@ Node* Evaluator::eval(Node* curr)
             return nullptr;
         }
 
-        // If all results are NUM, it's possible to sum them
         Name* t_name = new Name();
         t_name->m_value = 1.0;
         t_name->m_type = NameType::NUM;
@@ -93,21 +113,34 @@ Node* Evaluator::eval(Node* curr)
     }
 
     else if(curr->m_name->m_str == "/") {
+
+	// Division requires min 2 arguements
         bool flag = 0;
+	if (m_result.size() < 2) {
+	    flag = true;
+	    m_result.clear();
+	    return nullptr;
+	}
+
+	// Check for all NUMs and not zero except first arguement
+	Node* first = m_result.front();
+        m_result.pop_front();
+	if (first->m_name->m_type != NameType::NUM) flag = true;
+
         for (auto i = m_result.begin(); i != m_result.end(); ++i) {
-            if((*i)->m_name->m_type != NameType::NUM) flag = true;
+            if ((*i)->m_name->m_type != NameType::NUM) flag = true;
+	    if (atof((*i)->m_name->m_str.c_str()) == 0) flag = true;
         }
         if (flag) {
             m_result.clear();
             return nullptr;
         }
 
-        // If all results are NUM, it's possible to sum them
         Name* t_name = new Name();
-        t_name->m_value = 1.0;
+        t_name->m_value = atof(first->m_name->m_str.c_str());
         t_name->m_type = NameType::NUM;
         Node* t = new Node(t_name);
-
+	
         for (auto i = m_result.begin(); i != m_result.end(); ++i) {
             t->m_name->m_value /= atof((*i)->m_name->m_str.c_str());
         }
@@ -119,7 +152,7 @@ Node* Evaluator::eval(Node* curr)
     else if(curr->m_name->m_str == "print")
     {
         
-        // Simple print for just value in the first child node
+        // Simple print for just value in all nodes
 	for (auto i = m_result.begin(); i != m_result.end(); ++i) {
             std::cout << atof((*i)->m_name->m_str.c_str()) << "\n" << std::endl;
         }
@@ -133,4 +166,3 @@ Node* Evaluator::eval(Node* curr)
 	return t;
     }
 }
-
