@@ -2,6 +2,8 @@
 #define __ACTION__
 
 #include "dfsm.h"
+#include "lexer.h"
+#include "parser.h"
 
 class DFSM;
 

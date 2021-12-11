@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,6 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +145,8 @@
     <ClInclude Include="dfsm.h" />
     <ClInclude Include="error.h" />
     <ClInclude Include="event.h" />
+    <ClInclude Include="lexer.h" />
+    <ClInclude Include="parser.h" />
     <ClInclude Include="parsing_tree.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="name.h" />
@@ -153,7 +157,10 @@
     <ClCompile Include="action.cpp" />
     <ClCompile Include="dfsm.cpp" />
     <ClCompile Include="error.cpp" />
+    <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="name.cpp" />
+    <ClCompile Include="parser.cpp" />
     <ClCompile Include="parsing_tree.cpp" />
     <ClCompile Include="table.cpp" />
     <ClCompile Include="transition.cpp" />
