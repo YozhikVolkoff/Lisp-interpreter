@@ -3,6 +3,7 @@
 #include "table.h"
 #include "error.h"
 #include "transition.h"
+#include "evaluator.h"
 
 void disp_tree(Node* root) {
     if (root) {
@@ -28,19 +29,20 @@ int main() {
     std::string str;
 
     char ch;
-    // открываем файл в режиме чтения
-    fin.open("C:\\p_folder\\lisp_program.txt");
-    // если открытие файла прошло корректно
+    // РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р» РІ СЂРµР¶РёРјРµ С‡С‚РµРЅРёв‚¬
+    //fin.open("C:\\p_folder\\lisp_program.txt");
+    fin.open("~/Desktop/Sem_7/Compile/Lisp-interpreter-master/lisp_program.txt");
+    // РµСЃР»Рё РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° РїСЂРѕС€Р»Рѕ РєРѕСЂСЂРµРєС‚РЅРѕ
     if (fin) {
         while (fin.get(ch)) {
             str.push_back(ch);
         }
-        // закрытие потока
+        // Р·Р°РєСЂС‹С‚РёРµ РїРѕС‚РѕРєР°
         fin.close();
     }
-    // если открытие файла прошло некорректно
+    // РµСЃР»Рё РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° РїСЂРѕС€Р»Рѕ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ
     else 
-        std::cout << "Файл не найден" << std::endl;
+        std::cout << "NOT OPENED FILE" << std::endl;
 
 
     //std::cout << str << '\n';
@@ -71,6 +73,9 @@ int main() {
     parser.set_input(lexer.m_out);
     while (parser.m_curr_state != State::TERM)
         parser.do_transition();
+
+    Evaluator ev = Evaluator(parser.m_root);
+    ev.eval(parser.m_root);
 
     disp_tree(parser.m_root);
 
