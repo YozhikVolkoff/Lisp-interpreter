@@ -1,0 +1,12 @@
+﻿  action.cpp
+  dfsm.cpp
+  error.cpp
+  lexer.cpp
+  main.cpp
+  name.cpp
+  parser.cpp
+  parsing_tree.cpp
+  table.cpp
+  transition.cpp
+  Создание кода...
+  ThKomp_LispInterpreter.vcxproj -> C:\p_folder\Projects\ThKomp_LispInterpreter\Debug\ThKomp_LispInterpreter.exe
