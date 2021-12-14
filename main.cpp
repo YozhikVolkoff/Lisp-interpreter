@@ -80,7 +80,7 @@ int main() {
     disp_tree(parser.m_root);
 
     if (!err_log.empty())
-        std::cout << (--err_log.end())->m_descr;
+        std::cout << (err_log.front()).m_descr << "\n";
 
     return 0;
 }

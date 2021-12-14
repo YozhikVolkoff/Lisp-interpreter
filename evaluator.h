@@ -4,6 +4,9 @@
 #include <list>
 #include <iostream>
 #include "parsing_tree.h"
+#include "parser.h"
+#include "table.h"
+#include "error.h"
 
 using std::string;
 using std::list;

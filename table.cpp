@@ -63,12 +63,19 @@ void set_tables() {
     find_name("<=", "kword", 1);
     find_name(">", "kword", 1);
     find_name(">=", "kword", 1);
+    find_name("and", "kword", 1);
+    find_name("or", "kword", 1);
+    find_name("not", "kword", 1);
     find_name("set", "kword", 1);
+    find_name("print", "kword", 1);
+    find_name("cond", "kword", 1);
+    find_name("progn", "kword", 1);
+
     find_name("car", "kword", 1);
     find_name("cdr", "kword", 1);
     find_name("cons", "kword", 1);
     find_name("eval", "kword", 1);
     find_name("quote", "kword", 1);
     find_name("list", "kword", 1);
-    find_name("print", "kword", 1);
+
 }
