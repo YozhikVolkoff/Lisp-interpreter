@@ -3,9 +3,16 @@
 
 void Parser::set_input(std::vector<Name> input) {
     m_in = input;
+    // add the terminating token
     m_in.push_back(Name(TERM_NAME, NameType::TERM));
+    // set the current token to the beginning
     m_curr_name = m_in.begin();
+    // map the current token to an event
     m_curr_event = to_event(*m_curr_name);
+}
+
+const Node* Parser::get_output() const {
+    return m_root;
 }
 
 Event Parser::to_event(const Name& name) {
@@ -36,6 +43,7 @@ Event Parser::to_event(const Name& name) {
 
 Parser::Parser()
     : DFSM(),
+    // initializing root of the parsing tree
     m_root(new Node(new Name(INIT_NAME, NameType::INIT)))
 {
     m_curr_node = m_root;

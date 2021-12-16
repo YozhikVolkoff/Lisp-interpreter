@@ -7,20 +7,22 @@ std::vector<Name*> name_table;
 std::list<ErrorMessage> err_log;
 
 void GoNext::apply() {
+    // go to the next symbol
     m_lexer->m_curr_char++;
+    // transform symbol to the element of automaton alphabed
     m_lexer->m_curr_event = m_lexer->m_event_table[*m_lexer->m_curr_char];
 }
 
 void Push_GoNext::apply() {
+    // put current symbol to the buffer
     m_lexer->m_buffer.push_back(*m_lexer->m_curr_char);
-    m_lexer->m_curr_char++;
-    m_lexer->m_curr_event = m_lexer->m_event_table[*m_lexer->m_curr_char];
+    GoNext::apply();
 }
 
 void Pop_GoNext::apply() {
+    // extract last symbol from the buffer
     m_lexer->m_buffer.pop_back();
-    m_lexer->m_curr_char++;
-    m_lexer->m_curr_event = m_lexer->m_event_table[*m_lexer->m_curr_char];
+    GoNext::apply();
 }
 
 void GetTok::apply() {

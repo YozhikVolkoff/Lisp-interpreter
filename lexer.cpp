@@ -1,15 +1,29 @@
 #include "lexer.h"
 #include "transition.h"
 
+#define BUF_SIZE
+
 #define LETTERS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define DIGITS "0123456789"
 
 void Lexer::set_input(std::string input) {
     m_in = input;
+    // add the terminating symbol
     m_in.append(1, '\0');
+    // set the current symbol to the beginning
     m_curr_char = m_in.begin();
+    // map the current symbol to an event
     m_curr_event = m_event_table[*m_curr_char];
+    // allocate memory for the output
     m_out.reserve(m_in.size());
+}
+
+const std::vector<Name> Lexer::get_output() const {
+    return m_out;
+}
+
+const int Lexer::get_parenth_count() const {
+    return m_parenth_count;
 }
 
 Lexer::Lexer()
@@ -18,6 +32,7 @@ Lexer::Lexer()
 {
     using namespace std;
 
+    // allocate memory for the buffer
     m_buffer.reserve(BUF_SIZE);
 
     // create map from symbols to events
@@ -131,7 +146,7 @@ Lexer::Lexer()
         m_transit_table[State::SLASH][e] = new Transition(new GetTok(this, NameType::OP), State::INIT);
     m_transit_table[State::SLASH][Event::EQ] = new Transition(new Push_GetTok_GoNext(this, NameType::OP), State::INIT);
 
-    //// transition from 'INIT'
+    //// transitions from 'INIT'
     for (const auto& e : lex_events)
         m_transit_table[State::INIT][e] = new Transition(new Push_GetTok_GoNext(this), State::INIT);
     m_transit_table[State::INIT][Event::DIGIT] = new Transition(new Push_GoNext(this), State::NUM);

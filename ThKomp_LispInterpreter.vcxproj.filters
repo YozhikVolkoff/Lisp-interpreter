@@ -53,9 +53,6 @@
     <ClCompile Include="dfsm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="transition.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="action.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>

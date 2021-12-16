@@ -13,4 +13,5 @@ public:
 };
 
 extern std::list<ErrorMessage> err_log;
+
 #endif

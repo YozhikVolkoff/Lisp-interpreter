@@ -1,12 +1,12 @@
 ﻿  action.cpp
   dfsm.cpp
-  error.cpp
   lexer.cpp
   main.cpp
+C:\p_folder\Projects\ThKomp_LispInterpreter\main.cpp(70,50): error C2248: Lexer::m_parenth_count: невозможно обратиться к private член, объявленному в классе "Lexer"
+C:\p_folder\Projects\ThKomp_LispInterpreter\lexer.h(26): message : см. объявление "Lexer::m_parenth_count"
+C:\p_folder\Projects\ThKomp_LispInterpreter\lexer.h(19): message : см. объявление "Lexer"
   name.cpp
   parser.cpp
-  parsing_tree.cpp
   table.cpp
   transition.cpp
   Создание кода...
-  ThKomp_LispInterpreter.vcxproj -> C:\p_folder\Projects\ThKomp_LispInterpreter\Debug\ThKomp_LispInterpreter.exe
