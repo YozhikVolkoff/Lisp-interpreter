@@ -53,8 +53,8 @@ void set_tables() {
     kword_table = std::vector<Name*>(KWORDS_TABLE_SIZE, nullptr);
     name_table = std::vector<Name*>(NAME_TABLE_SIZE, nullptr);
 
-    find_name("t", "name", 1);
-    find_name("nil", "name", 1);
+    find_name("t", "name", 1, NameType::IDENT);
+    find_name("nil", "name", 1, NameType::IDENT);
     find_name("+", "kword", 1);
     find_name("-", "kword", 1);
     find_name("*", "kword", 1);
@@ -65,12 +65,18 @@ void set_tables() {
     find_name("<=", "kword", 1);
     find_name(">", "kword", 1);
     find_name(">=", "kword", 1);
+    find_name("and", "kword", 1);
+    find_name("or", "kword", 1);
+    find_name("not", "kword", 1);
     find_name("set", "kword", 1);
-    //find_name("car", "kword", 1);
-    //find_name("cdr", "kword", 1);
-    find_name("cond", "kword", 1);
-    //find_name("eval", "kword", 1);
-    //find_name("quote", "kword", 1);
-    //find_name("list", "kword", 1);
     find_name("print", "kword", 1);
+    find_name("cond", "kword", 1);
+    find_name("progn", "kword", 1);
+
+    /*find_name("car", "kword", 1);
+    find_name("cdr", "kword", 1);
+    find_name("cons", "kword", 1);
+    find_name("eval", "kword", 1);
+    find_name("quote", "kword", 1);
+    find_name("list", "kword", 1);*/
 }

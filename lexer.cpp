@@ -108,7 +108,7 @@ Lexer::Lexer()
     for (const auto& e : lex_events)
         m_transit_table[State::STR][e] = new Transition(new Push_GoNext(this), State::STR);
     m_transit_table[State::STR][Event::B_SLASH] = new Transition(new GoNext(this), State::ESC);
-    m_transit_table[State::STR][Event::D_QUOT] = new Transition(new GetTok(this, NameType::STR), State::INIT);
+    m_transit_table[State::STR][Event::D_QUOT] = new Transition(new GetTok_GoNext(this, NameType::STR), State::INIT);
 
     //// identifier parsing
     for (const auto& e : lex_events)
@@ -150,7 +150,7 @@ Lexer::Lexer()
     for (const auto& e : lex_events)
         m_transit_table[State::INIT][e] = new Transition(new Push_GetTok_GoNext(this), State::INIT);
     m_transit_table[State::INIT][Event::DIGIT] = new Transition(new Push_GoNext(this), State::NUM);
-    m_transit_table[State::INIT][Event::D_QUOT] = new Transition(new Push_GoNext(this), State::STR);
+    m_transit_table[State::INIT][Event::D_QUOT] = new Transition(new GoNext(this), State::STR);
     m_transit_table[State::INIT][Event::LETTER] = new Transition(new Push_GoNext(this), State::IDENT);
     m_transit_table[State::INIT][Event::E_LETTER] = new Transition(new Push_GoNext(this), State::IDENT);
     m_transit_table[State::INIT][Event::PLUS] = new Transition(new Push_GoNext(this), State::PLUS);

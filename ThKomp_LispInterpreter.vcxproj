@@ -144,6 +144,7 @@
     <ClInclude Include="action.h" />
     <ClInclude Include="dfsm.h" />
     <ClInclude Include="error.h" />
+    <ClInclude Include="evaluator.h" />
     <ClInclude Include="event.h" />
     <ClInclude Include="lexer.h" />
     <ClInclude Include="parser.h" />
@@ -151,18 +152,20 @@
     <ClInclude Include="state.h" />
     <ClInclude Include="name.h" />
     <ClInclude Include="table.h" />
+    <ClInclude Include="test.h" />
     <ClInclude Include="transition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="dfsm.cpp" />
-    <ClCompile Include="error.cpp" />
+    <ClCompile Include="evaluator.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="name.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="parsing_tree.cpp" />
     <ClCompile Include="table.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//  Author      : Sheptunov Dmitry
+//  Description : enum class for symbols of state machine alphabet
+//-----------------------------------------------------------------------------
+
+
 #ifndef __EVENT__
 #define __EVENT__
 
@@ -5,21 +11,17 @@
 
 enum class Event
 {
-    // any symbol except mentioned
+    // lexer alphabet
+    // any symbol
     SYM,
-
-    // any letter except mentioned
+    // any letter
     LETTER,
-
     // separation symbol
     SEP_SYM,
-
     // any digit
     DIGIT,
-
     // for exponenta
     E_LETTER,
-
     // math
     PLUS,
     MINUS,
@@ -28,7 +30,6 @@ enum class Event
     EQ,
     GR,
     LESS,
-
     // special
     LEFT_PAR,
     RIGHT_PAR,
@@ -42,7 +43,7 @@ enum class Event
     ENDLINE,
     END,
 
-    // parser events
+    // parser alphabet
     //LEFT_PAR
     //RIGHT_PAR
     //END
@@ -54,6 +55,7 @@ enum class Event
     NO_EVENT
 };
 
+// the alphabet of the lexical analyzer
 const std::vector<Event> lex_events{Event::SYM, Event::LETTER, Event::SEP_SYM,
                                     Event::DIGIT, Event::E_LETTER, Event::PLUS,
                                     Event::MINUS, Event::SLASH, Event::STAR,
@@ -63,7 +65,8 @@ const std::vector<Event> lex_events{Event::SYM, Event::LETTER, Event::SEP_SYM,
                                     Event::ENDLINE, Event::VERT_BAR, 
                                     Event::LEFT_PAR, Event::RIGHT_PAR, Event::END};
 
-const std::vector<Event> prsr_events{Event::LEFT_PAR, Event::RIGHT_PAR, Event::IDENT,
-                                     Event::NUM, Event::STR, Event::UNDEF, Event::END};
+// the alphabet of the parser
+const std::vector<Event> parser_events{Event::LEFT_PAR, Event::RIGHT_PAR, Event::IDENT,
+                                       Event::NUM, Event::STR, Event::UNDEF, Event::END};
 
 #endif

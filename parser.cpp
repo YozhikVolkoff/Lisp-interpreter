@@ -11,12 +11,12 @@ void Parser::set_input(std::vector<Name> input) {
     m_curr_event = to_event(*m_curr_name);
 }
 
-const Node* Parser::get_output() const {
+Node* Parser::get_output() const {
     return m_root;
 }
 
 Event Parser::to_event(const Name& name) {
-    switch (name.m_type) {
+    switch (name.get_type()) {
     case NameType::LEFT_PAR:
         return Event::LEFT_PAR;
         break;

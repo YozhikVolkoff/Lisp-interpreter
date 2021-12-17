@@ -48,6 +48,7 @@ public:
     friend class Push_GoNext;
     friend class Pop_GoNext;
     friend class GetTok;
+    friend class GetTok_GoNext;
     friend class Push_GetTok_GoNext;
     friend class GetLeftPar;
     friend class GetRightPar;

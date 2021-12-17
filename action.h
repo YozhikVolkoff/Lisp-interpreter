@@ -87,6 +87,15 @@ public:
     virtual void apply();
 };
 
+class GetTok_GoNext : public GetTok
+{
+public:
+    GetTok_GoNext(Lexer* lexer, NameType name_type = NameType::UNDEF)
+        : GetTok(lexer, name_type) {}
+
+    virtual void apply();
+};
+
 // action for one-symbol token processing;
 // put current symbol to the buffer, get token from the buffer,
 // go to the next symbol

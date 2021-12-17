@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//  Author      : Sheptunov Dmitry
+//  Description : A class for token storage
+//-----------------------------------------------------------------------------
+
+
 #ifndef __NAME__
 #define __NAME__
 
@@ -7,6 +13,7 @@
 #define INIT_NAME " "
 #define TERM_NAME "   "
 
+// lexical type of the token
 enum class NameType {
     INIT,
     TERM,
@@ -19,6 +26,7 @@ enum class NameType {
     UNDEF
 };
 
+// type of the Lisp variable/constant
 enum class ValueType {
     NUM,
     STR,
@@ -26,6 +34,7 @@ enum class ValueType {
     UNDEF
 };
 
+// stores value and type of the Lisp variable/constant
 struct Value {
     std::variant<double, std::string, bool> val;
     ValueType type;
@@ -38,24 +47,34 @@ struct Value {
 
 class Name
 {
-public:
+private:
     std::string m_str;
     Value m_value;
     NameType m_type;
     int m_level;
     Name* m_next;
 
+public:
     Name(std::string str = "", NameType type = NameType::UNDEF, int level = 0)
         : m_str(str),
         m_type(type),
         m_level(level),
         m_next(nullptr) {}
 
+    const std::string& get_str() const;
+    const NameType& get_type() const;
+
+    //void set_value(const Value& value);
     void set_value(const double& num);
     void set_value(const std::string& str);
     void set_value(const bool& b);
 
     const Value get_value() const;
+
+    // see function in table.h
+    friend Name* find_name(std::string str, const std::string& table_name, const int& ins,
+        NameType type, int parenth_cnt);
+
 };
 
 #endif

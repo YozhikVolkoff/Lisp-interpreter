@@ -27,7 +27,7 @@ public:
     // load token flow to the parser
     void set_input(std::vector<Name> input);
 
-    const Node* get_output() const;
+    Node* get_output() const;
 
     // map a token to an event
     Event to_event(const Name& name);

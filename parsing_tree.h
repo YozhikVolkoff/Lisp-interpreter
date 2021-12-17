@@ -1,6 +1,12 @@
 #ifndef __PARSING_TREE__
 #define __PARSING_TREE__
 
+//-----------------------------------------------------------------------------
+//  Author      : Sheptunov Dmitry
+//  Description : Class Node describes node of the parsing tree
+//                m_name - stores token
+//-----------------------------------------------------------------------------
+
 #include <list>
 #include "name.h"
 

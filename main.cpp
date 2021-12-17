@@ -4,8 +4,9 @@
 #include "error.h"
 #include "transition.h"
 #include "evaluator.h"
+#include "test.h"
 
-void disp_tree(Node* root) {
+/*void disp_tree(Node* root) {
     if (root) {
         std::cout << root->m_name->m_str << ": ";
         for (std::list<Node*>::iterator it = root->m_chld.begin(); it != root->m_chld.end(); it++)
@@ -18,10 +19,52 @@ void disp_tree(Node* root) {
     else {
         std::cout << "\n...empty tree...\n";
     }
+}*/
+
+void interpreter() {
+    set_tables();
+
+    while (true) {
+        std::string line;
+        getline(std::cin, line);
+
+        if (line == ":exit")
+            break;
+        else {
+            Lexer lexer;
+            lexer.set_input(line);
+            while (lexer.m_curr_state != State::TERM)
+                lexer.do_transition();
+            if (lexer.get_parenth_count() == 0) {
+                Parser parser;
+                parser.set_input(lexer.get_output());
+                while (parser.m_curr_state != State::TERM)
+                    parser.do_transition();
+                if (err_log.empty()) {
+                    Evaluator ev = Evaluator(parser.get_output());
+                    ev.eval(parser.get_output());
+                }
+            }
+            else {
+                err_log.push_back(ErrorMessage("parenthesis count mismatch"));
+            }
+
+            if(!err_log.empty()) {
+                std::cout << err_log.begin()->m_descr;
+                err_log.clear();
+            }
+
+            //std::cout << "\n";
+        }
+    }
 }
 
 int main() {
-    set_tables();
+    interpreter();
+
+    //Name_test();
+
+    /*set_tables();
 
     Lexer lexer;
 
@@ -80,7 +123,7 @@ int main() {
     disp_tree(parser.m_root);
 
     if (!err_log.empty())
-        std::cout << (--err_log.end())->m_descr;
+        std::cout << (--err_log.end())->m_descr;*/
 
     return 0;
 }

@@ -1,25 +1,32 @@
 #include "name.h"
 #include "table.h"
 
+const std::string& Name::get_str() const {
+    return m_str;
+}
+
+const NameType& Name::get_type() const {
+    return m_type;
+}
+
+/*void Name::set_value(const Value& value) {
+    m_value.val = value.val;
+    m_value.type = value.type;
+}*/
+
 void Name::set_value(const double& num) {
-    if (find_name(this->m_str, "name", 0)) {
-        m_value.val = num;
-        m_value.type = ValueType::NUM;
-    }
+    m_value.val = num;
+    m_value.type = ValueType::NUM;
 }
 
 void Name::set_value(const std::string& str) {
-    if (find_name(this->m_str, "name", 0)) {
-        m_value.val = str;
-        m_value.type = ValueType::STR;
-    }
+    m_value.val = str;
+    m_value.type = ValueType::STR;
 }
 
 void Name::set_value(const bool& b) {
-    if (find_name(this->m_str, "name", 0)) {
-        m_value.val = b;
-        m_value.type = ValueType::BOOL;
-    }
+    m_value.val = b;
+    m_value.type = ValueType::BOOL;
 }
 
 const Value Name::get_value() const {
